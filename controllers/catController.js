@@ -73,4 +73,4 @@ const deleteCat = async (req, res) => {
     }
 };
 
-module.exports = { createCat, readAll, readOne, updateCat, deleteCat }
+module.exports = { createCat, readAll, readOne, updateCat, deleteCat };
