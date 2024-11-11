@@ -1,5 +1,5 @@
-const express = require('require');
 const Cat = require('../models/Cat');
+const mongoose = require('mongoose');
 
 //  Crear un gato
 const createCat = async (req, res) => {
@@ -21,6 +21,10 @@ const createCat = async (req, res) => {
 const readAll = async (req, res) => {
     try {
         const cats = await Cat.find();
+        console.log(cats);
+        if (cats.length === 0) {
+            return res.status(404).json({ message: "No hay gatos disponibles" });
+        }
         res.json(cats);
     } catch (error) {
         res.status(500).json({ message: error.message});
@@ -29,8 +33,14 @@ const readAll = async (req, res) => {
 
 // Obtener gato por ID
 const readOne = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'ID inválido' });
+    }
+
     try {
-        const cat = await Cat.findById(req.params.id);
+        const cat = await Cat.findById(id);
         if (!cat) {
             return res.status(404).json({ message: "Gato no encontrado" });
         }
@@ -59,12 +69,14 @@ const updateCat = async (req, res) => {
 
 // Eliminar un gato
 const deleteCat = async (req, res) => {
+    const { id } = req.params;
     try {
-        const catEliminado = await Cat.findByIdAndDelete(req.params.id);
+        const catEliminado = await Cat.findByIdAndDelete(id);
+        console.log(catEliminado);
         if(!catEliminado) {
             return res.status(404).json({ message: "Gato no encontrado" });
         }
-        res.status({ 
+        res.status(200).json({ 
             message: "Gato eliminado", 
             catEliminado
         })

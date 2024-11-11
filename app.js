@@ -7,13 +7,13 @@ const connectDB = require('./config/db');
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
-const connectDB = require('./config/db');
-
 connectDB();
 
 app.use(express.json());
 
 app.use('/cats', rutaGatos);
+
+
 
 
 app.listen(PORT, () => {

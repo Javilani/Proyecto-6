@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const verifyToken = async (req, res, next) => {
     const token = req.headers["authorization"];
@@ -9,7 +10,7 @@ const verifyToken = async (req, res, next) => {
     }
 
     try { 
-        const openToken = await jwt.verify(token, process.env.JWT_SECRET); // No necesita require("dotenv").config() ????
+        const openToken = await jwt.verify(token, process.env.JWT_SECRET);
         req.user = openToken.user;
         next();
     } catch (error) {
