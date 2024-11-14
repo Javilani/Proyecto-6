@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 
 //  Crear un gato
 const createCat = async (req, res) => {
-    const { name, age, img, description } = req.body;
+    const { name, age, gender, img, description } = req.body;
 
     try {
-        const cat = new Cat({ name, age, img, description });
+        const cat = new Cat({ name, age, gender, img, description });
         const newCat = await cat.save();
         res.status(201).json( { 
             message: "Gato agregado con éxito",
@@ -52,10 +52,10 @@ const readOne = async (req, res) => {
 
 // Actualizar un gato
 const updateCat = async (req, res) => {
-    const { name, age, img, description } = req.body;
+    const { name, age, gender, img, description } = req.body;
 
     try {
-        const cat = await Cat.findByIdAndUpdate(req.params.id, { name, age, img, description }, {
+        const cat = await Cat.findByIdAndUpdate(req.params.id, { name, age, gender, img, description }, {
             new: true,
         });
         if (!cat) {
