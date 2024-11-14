@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 const rutaGatos = require('./routes/cats');
 const rutaDonaciones = require('./routes/donations');
+const rutaUsuarios = require('./routes/users');
 
 const connectDB = require('./config/db');
 
@@ -16,6 +17,8 @@ app.use(express.json());
 
 app.use('/cats', rutaGatos);
 app.use('/donations', rutaDonaciones);
+app.use('/users', rutaUsuarios);
+
 
 
 
