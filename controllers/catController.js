@@ -13,7 +13,7 @@ const createCat = async (req, res) => {
             newCat
             });
     } catch (error) {
-        res.status(400).json({ message: error.message});
+        res.status(400).json({ message: error.message });
     }
 };
 
@@ -21,7 +21,6 @@ const createCat = async (req, res) => {
 const readAll = async (req, res) => {
     try {
         const cats = await Cat.find();
-        console.log(cats);
         if (cats.length === 0) {
             return res.status(404).json({ message: "No hay gatos disponibles" });
         }
@@ -59,7 +58,7 @@ const updateCat = async (req, res) => {
             new: true,
         });
         if (!cat) {
-            return res.status(404).json({ message: "Gato no encontrado "});
+            return res.status(404).json({ message: "Gato no encontrada"});
         }
         res.json(cat);
     } catch (error) {
@@ -72,7 +71,6 @@ const deleteCat = async (req, res) => {
     const { id } = req.params;
     try {
         const catEliminado = await Cat.findByIdAndDelete(id);
-        console.log(catEliminado);
         if(!catEliminado) {
             return res.status(404).json({ message: "Gato no encontrado" });
         }
