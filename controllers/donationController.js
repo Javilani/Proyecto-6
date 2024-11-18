@@ -13,7 +13,12 @@ const createDonation = async (req, res) => {
             newDonation
         });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        if (error instanceof mongoose.Error) {
+            res.status(400).json({ message: error.message });
+        } else {
+            res.status(500).json({ message: "Error interno al crear la donación." });
+        }
+
     }
 };
 
@@ -52,6 +57,14 @@ const readOneDonation = async (req, res) => {
 // Actualizar una donación
 const updateDonation = async (req, res) => {
     const { name, price } = req.body;
+
+    if (!name || typeof name !== 'string') {
+        return res.status(400).json({ message: 'El nombre es obligatorio y debe ser una cadena' });
+    }
+    if (typeof price !== 'number' || price <= 0) {
+        return res.status(400).json({ message: 'El precio es obligatorio y debe ser un número positivo' });
+    }
+
     try {
         const donation = await Donation.findByIdAndUpdate(req.params.id, { name, price }, {
             new: true,
