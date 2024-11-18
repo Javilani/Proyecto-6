@@ -58,7 +58,7 @@ const updateCat = async (req, res) => {
             new: true,
         });
         if (!cat) {
-            return res.status(404).json({ message: "Gato no encontrada"});
+            return res.status(404).json({ message: "Gato no encontrado"});
         }
         res.json(cat);
     } catch (error) {
@@ -75,7 +75,7 @@ const deleteCat = async (req, res) => {
             return res.status(404).json({ message: "Gato no encontrado" });
         }
         res.status(200).json({ 
-            message: "Gato eliminado", 
+            message: "Gato eliminado exitosamente",
             catEliminado
         })
     } catch (error) {
