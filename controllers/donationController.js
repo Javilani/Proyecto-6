@@ -52,7 +52,6 @@ const readOneDonation = async (req, res) => {
 // Actualizar una donación
 const updateDonation = async (req, res) => {
     const { name, price } = req.body;
-
     try {
         const donation = await Donation.findByIdAndUpdate(req.params.id, { name, price }, {
             new: true,
@@ -60,9 +59,14 @@ const updateDonation = async (req, res) => {
         if (!donation) {
             return res.status(404).json({ message: "Donación no encontrada"});
         }
-        res.json(donation);
+        res.json({
+            message: "Donación actualizada con éxito",
+            donation
+        });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ 
+            message: "Hubo un error en la búsqueda",
+            error });
     }
 };
 
