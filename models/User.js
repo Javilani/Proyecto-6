@@ -7,8 +7,6 @@ const userSchema = new mongoose.Schema({
     lastname: { type: String, required: true },
     password: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    cart: { type: mongoose.Types.ObjectId, ref: "Cart", default: [] },
-    receipts: { type: Array, default: [] }
 });
 
 // Crea y exporta el modelo basado en el esquema

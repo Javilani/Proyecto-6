@@ -3,25 +3,22 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
 
-
-const Cart = require('../models/Cart');
 const User = require('../models/User');
 
 // Crear un usuario
+
 const createUser = async (req, res) => {
     const { name, lastname, email, password } = req.body;
-
     try {
+        // Encriptar contraseña
         const hashedPassword = await bcryptjs.hash(password, 10);
-
-        const newCart = await Cart.create({});
-
+        
+        // Crear usuario
         const newUser = await User.create({
             name,
             lastname,
             email,
             password: hashedPassword,
-            cart: newCart,
         });
 
         const payload = {
@@ -37,13 +34,13 @@ const createUser = async (req, res) => {
 
                 res.json({
                     message: "Usuario creado con éxito.",
-                    data: token,
+                    token: token,
                 });
             }
         );
     } catch (error) {
         res.status(500).json({
-            msg: "Hubo un error con la creación de usuario. Intenta nuevamente con otro nombre y/o email.",
+            msg: "Hubo un error con la creación de usuario. Intenta nuevamente con otro email.",
             error: error,
         });
     }
@@ -82,7 +79,7 @@ const loginUser = async (req, res) => {
                 if (error) throw error;
 
                 res.json({
-                    message: "Inicio de sesión exitoss",
+                    message: "Inicio de sesión exitoso",
                     data: token,
                 });
             }
@@ -151,7 +148,6 @@ const deleteUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-
 }
 
 module.exports = { createUser, loginUser, verifyToken, updateUser, deleteUser }

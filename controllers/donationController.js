@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 
 // Crear una opción de donación
 const createDonation = async (req, res) => {
-    const { idProd, name, price, description } = req.body;
+    const { name, price } = req.body;
 
     try {
-        const donation = new Donation({ idProd, name, price, description });
+        const donation = new Donation({ name, price });
         const newDonation = await donation.save();
         res.status(200).json( {
             message: "Donación creada con éxito",
@@ -51,10 +51,10 @@ const readOneDonation = async (req, res) => {
 
 // Actualizar una donación
 const updateDonation = async (req, res) => {
-    const { idProd, name, price, description } = req.body;
+    const { name, price } = req.body;
 
     try {
-        const donation = await Donation.findByIdAndUpdate(req.params.id, { idProd, name, price, description }, {
+        const donation = await Donation.findByIdAndUpdate(req.params.id, { name, price }, {
             new: true,
         });
         if (!donation) {
