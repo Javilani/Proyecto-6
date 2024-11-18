@@ -94,6 +94,11 @@ const loginUser = async (req, res) => {
     }
 };
 
+
+// ARREGLAR VERIFYTOKEN, PIDE MANTENER SESIÓN ABIERTA Y RECORDAR ESTADO DE SESIÓN ABIERTA
+
+
+
 // Recuperación de datos de un usuario por ID
 const verifyToken = async (req, res) => {
     try {
