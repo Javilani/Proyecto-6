@@ -7,6 +7,8 @@ const donationController = require('../controllers/donationController');
  * @swagger
  * /donations/create:
  *   post:
+ *     tags:
+ *       - Donations
  *     summary: Crear una donación
  *     description: Crea una opción nueva de donación con el nombre y monto proporcionados.
  *     requestBody:
@@ -70,6 +72,8 @@ router.post("/create", donationController.createDonation);
  * @swagger
  * /donations/readall:
  *   get:
+ *     tags:
+ *       - Donations
  *     summary: Obtiene todas las donaciones disponibles.
  *     description: Devuelve una lista con todas las donaciones existentes en el sistema.
  *     responses:
@@ -118,6 +122,8 @@ router.get("/readall", donationController.readAllDonations);
  * @swagger
  * /donations/readone/{id}:
  *   get:
+ *     tags:
+ *       - Donations
  *     summary: Obtiene una donación por su ID.
  *     description: Devuelve los detalles de una donación específica, identificada por su ID único.
  *     parameters:
@@ -181,6 +187,8 @@ router.get("/readone/:id", donationController.readOneDonation);
  * @swagger
  * /donations/update/{id}:
  *   put:
+ *     tags:
+ *       - Donations
  *     summary: Actualiza una donación existente.
  *     description: Permite actualizar el nombre y precio de una donación existente por su ID.
  *     parameters:
@@ -270,6 +278,8 @@ router.put("/update/:id", donationController.updateDonation);
  * @swagger
  * /donations/delete/{id}:
  *   delete:
+ *     tags:
+ *       - Donations
  *     summary: Eliminar una donación
  *     description: Elimina una donación existente según el ID proporcionado.
  *     parameters:

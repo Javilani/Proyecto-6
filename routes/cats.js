@@ -7,6 +7,8 @@ const catController = require('../controllers/catController');
  * @swagger
  * /cats/create:
  *   post:
+ *     tags:
+ *       - Cats
  *     summary: Crear un nuevo gato
  *     description: Crea un nuevo registro de un gato con los detalles proporcionados en el cuerpo de la solicitud.
  *     requestBody:
@@ -66,6 +68,8 @@ router.post("/create", catController.createCat);
  * @swagger
  * /cats/readall:
  *   get:
+ *     tags:
+ *       - Cats
  *     summary: Obtener todos los gatos
  *     description: Devuelve una lista con todos los gatos almacenados en la base de datos.
  *     responses:
@@ -105,6 +109,8 @@ router.get("/readall", catController.readAll);
  * @swagger
  * /cats/readone/{id}:
  *   get:
+ *     tags:
+ *       - Cats
  *     summary: Obtener un gato específico
  *     description: Devuelve los detalles de un gato específico basado en el ID proporcionado.
  *     parameters:
@@ -153,6 +159,8 @@ router.get("/readone/:id", catController.readOne);
  * @swagger
  * /cats/update/{id}:
  *   put:
+ *     tags:
+ *       - Cats
  *     summary: Actualizar información de un gato
  *     description: Actualiza los detalles de un gato en la base de datos, basado en el ID proporcionado.
  *     parameters:
@@ -221,6 +229,8 @@ router.put("/update/:id", catController.updateCat);
  * @swagger
  * /cats/delete/{id}:
  *   delete:
+ *     tags:
+ *       - Cats
  *     summary: Eliminar un gato
  *     description: Elimina un gato de la base de datos según el ID proporcionado.
  *     parameters:

@@ -95,22 +95,34 @@ const loginUser = async (req, res) => {
 };
 
 
-// ARREGLAR VERIFYTOKEN, PIDE MANTENER SESIÓN ABIERTA Y RECORDAR ESTADO DE SESIÓN ABIERTA
+// ARREGLAR VERIFYTOKEN, LA DESCRIPCIÓN DE LO QUE HACE
 
 
-
-// Recuperación de datos de un usuario por ID
+// Mantiene la sesión del usuario abierta
 const verifyToken = async (req, res) => {
     try {
         const foundUser = await User.findById(req.user.id).select("-password");
+        
+        if (!foundUser) {
+            return res.status(404).json({ 
+                message: "Usuario no encontrado" 
+            });
+        }
+
+        const newToken = jwt.sign(
+            { id: foundUser.id }, 
+            process.env.JWT_SECRET, 
+            { expiresIn: "1h" }
+        );
 
         return res.json({
-            message: "Datos de usuario encontrados.",
+            message: "Sesión válida. Token renovado.",
             data: foundUser,
+            token: newToken,
         });
     } catch (error) {
         res.status(500).json({
-            message: "El usuario no se encuentra identificado",
+            message: "Error al verificar el token.",
         });
     }
 };
