@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const dotenv = require('dotenv');
 const swaggerJsdoc = require('swagger-jsdoc');
@@ -37,6 +38,9 @@ const swaggerSpec = swaggerJsdoc(options);
 
 // Ruta para servir la documentación interactiva
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Configuración de CORS
+app.use(cors());
 
 // Middleware para parsear el cuerpo de las solicitudes en formato JSON
 app.use(express.json());
