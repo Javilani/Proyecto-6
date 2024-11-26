@@ -49,6 +49,7 @@ const authMiddleware = require('../middleware/authorization');
  *               type: object
  *       500:
  *         description: Error en el servidor.
+ *         data: error.message
  */
 router.post("/create", userController.createUser);
 

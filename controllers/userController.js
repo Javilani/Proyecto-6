@@ -6,7 +6,6 @@ dotenv.config();
 const User = require('../models/User');
 
 // Crear un usuario
-
 const createUser = async (req, res) => {
     const { name, lastname, email, password } = req.body;
     try {
@@ -93,10 +92,6 @@ const loginUser = async (req, res) => {
         });
     }
 };
-
-
-// ARREGLAR VERIFYTOKEN, LA DESCRIPCIÓN DE LO QUE HACE
-
 
 // Mantiene la sesión del usuario abierta
 const verifyToken = async (req, res) => {

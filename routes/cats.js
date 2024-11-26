@@ -21,18 +21,23 @@ const catController = require('../controllers/catController');
  *               name:
  *                 type: string
  *                 description: Nombre del gato.
+ *                 example: Michito
  *               age:
  *                 type: string
  *                 description: Edad del gato (en años o meses).
+ *                 example: 4
  *               gender:
  *                 type: string
  *                 description: Género del gato.
+ *                 example: male
  *               img:
- *                 type: string
+ *                 type: string                
+ *                 example: ./img/michito.jpg
  *                 description: URL de la imagen del gato.
  *               description:
  *                 type: string
  *                 description: Descripción del gato.
+ *                 example: Muy meloso y cariñoso
  *     responses:
  *       201:
  *         description: Gato agregado con éxito.
