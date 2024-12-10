@@ -93,7 +93,7 @@ router.get("/login", userController.loginUser);
 
 /**
  * @swagger
- * /verify:
+ * /users/verify:
  *   get:
  *     tags:
  *       - Users
