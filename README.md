@@ -75,7 +75,7 @@ La API está documentada con Swagger. Para acceder a la documentación interacti
 
 Usuarios
 - POST /users/create - Registrar un nuevo usuario.
-- GET /users/login - Iniciar sesión.
+- POST /users/login - Iniciar sesión.
 - GET /users/verify - Mantener la sesión abierta.
 - PUT /users/update - Actualizar datos del usuario.
 - DELETE /users/delete - Eliminar un usuario.
