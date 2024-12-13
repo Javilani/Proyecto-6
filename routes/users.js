@@ -89,7 +89,7 @@ router.post("/create", userController.createUser);
  *       500:
  *         description: Error en el servidor.
  */
-router.get("/login", userController.loginUser);
+router.post("/login", userController.loginUser);
 
 /**
  * @swagger
