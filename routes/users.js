@@ -56,7 +56,7 @@ router.post("/create", userController.createUser);
 /**
  * @swagger
  * /users/login:
- *   get:
+ *   post:
  *     tags:
  *       - Users
  *     summary: Iniciar sesión
