@@ -85,6 +85,7 @@ const loginUser = async (req, res) => {
                             id: foundUser.id,
                             name: foundUser.name,
                             email: foundUser.email,
+                            lastname: foundUser.lastname,
                         },
                 });
             }
