@@ -1,5 +1,5 @@
 // import MercadoPagoConfig from "mercadopago";
-const mp = require('../config/mercadopago.config');
+const mercadopago = require('../config/mercadopago.config');
 
 const createPreference = async(req, res) => {
     try {
