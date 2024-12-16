@@ -4,16 +4,14 @@ const mp = require('../config/mercadopago.config');
 const createPreference = async(req, res) => {
     try {
         const { cart, total } = req.body;
-
-        const items = cart.map((donation) => ({
-            title: donation.name,
-            unit_price: parseFloat(donation.price),
-            quantity: parseInt(donation.quantity),
-            currency_id: 'CLP',
+        const products = cart.map((product) => ({
+            title: product.nombre,
+            unit_price: product.precio,
+            quantity: product.quantity,
+            currency_id: 'CLP'
         }));
-
         const preferences = {
-            items,
+            products,
             back_urls: {
                 success: 'http://localhost:3000/success',
                 failure: 'http://localhost:3000/failure',
@@ -21,8 +19,7 @@ const createPreference = async(req, res) => {
             },
             auto_return: 'approved'
         };
-
-        const response = await mp.preferences.create(preferences);
+        const response = await mercadopago.preferences.create(preferences);
         res.status(200).json({ id: response.body.id })
     } catch (error) {
         console.error('Error al crear la preferencia:', error);
