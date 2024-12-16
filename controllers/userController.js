@@ -68,6 +68,7 @@ const loginUser = async (req, res) => {
         const payload = {
             user: {
                 id: foundUser.id,
+                name: foundUser.name,
             },
         };
 
@@ -80,6 +81,11 @@ const loginUser = async (req, res) => {
                 res.json({
                     message: "Inicio de sesión exitoso",
                     data: token,
+                    user: {
+                            id: foundUser.id,
+                            name: foundUser.name,
+                            email: foundUser.email,
+                        },
                 });
             }
         );
