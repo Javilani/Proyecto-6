@@ -1,6 +1,7 @@
-import MercadoPagoConfig from "mercadopago";
+// import MercadoPagoConfig from "mercadopago";
+const MercadoPagoConfig = require('mercadopago');
 
-export const createPreference = async(req, res) => {
+const createPreference = async(req, res) => {
     try {
         const { cart, total } = req.body;
 
@@ -27,3 +28,5 @@ export const createPreference = async(req, res) => {
         res.status(500).json({error: error});
     }
 }
+
+module.exports = createPreference;
