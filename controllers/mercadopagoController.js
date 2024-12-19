@@ -5,12 +5,25 @@ const createPreference = async(req, res) => {
     try {
         const { cart } = req.body;
         // Vamos a estructuras los datos de los productos del carrito - Debe ser idealmente un Array
-        const items = cart.map((product) => ({
-            title: product.nombre,
-            unit_price: Number(product.precio),
-            quantity: Number(product.quantity),
-            currency_id: 'CLP'
-        }));
+        const items = cart.map((product) => {
+            const unitPrice = parseFloat(product.price);
+            const quantity = parseInt(product.quantity, 10);
+
+            if (isNaN(unitPrice) || unitPrice <= 0) {
+                throw new Error(`El precio del producto "${product.name}" no es válido: ${product.price}`);
+            }
+
+            if (isNaN(quantity) || quantity <= 0) {
+                throw new Error(`La cantidad del producto "${product.name}" no es válida: ${product.quantity}`);
+            }
+
+            return {
+                title: product.name,
+                unit_price: unitPrice,
+                quantity: quantity,
+                currency_id: 'CLP',
+            };
+        });
 
         // Es el cuerpo de configuración de las preferencias de compra para MercadoPago
         const body = {
