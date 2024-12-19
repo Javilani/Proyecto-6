@@ -33,4 +33,4 @@ const createPreference = async(req, res) => {
     }
 }
 
-module.exports = createPreference;
+module.exports = { createPreference };
