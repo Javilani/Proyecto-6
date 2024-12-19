@@ -50,7 +50,7 @@ app.use(express.json());
 app.use('/cats', rutaGatos);
 app.use('/donations', rutaDonaciones);
 app.use('/users', rutaUsuarios);
-app.use('/', rutaMercadoPago);
+app.use('/mercadoPago', rutaMercadoPago);
 
 
 app.listen(PORT, () => {
